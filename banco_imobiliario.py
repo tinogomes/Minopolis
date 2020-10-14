@@ -66,10 +66,16 @@ class Tabuleiro():
         jogador.comprar_ou_aluguar(self.propriedades[nova_posicao])
         self.jogadores[jogador] = nova_posicao
 
+def gerar_preco():
+    return random.choice(range(100, 500, 50))
+
+def gerar_aluguel():
+    return random.choice(range(30, 150, 10))
+
 class Partida:
     def __init__(self, jogadores, num_propriedades=20):
         jogadores = jogadores.copy()
         random.shuffle(jogadores)
 
-        propriedades = [Propriedade() for _ in range(num_propriedades)]
+        propriedades = [Propriedade(preco=gerar_preco()) for _ in range(num_propriedades)]
         self.tabuleiro = Tabuleiro(jogadores=jogadores, propriedades=propriedades)

@@ -206,3 +206,19 @@ def test_partida():
         jogadores[0]: 0,
     }
     random.seed()
+
+def test_gerar_preco():
+    random.seed(0)
+    assert gerar_preco() == 400
+    assert gerar_preco() == 400
+    assert gerar_preco() == 100
+    assert gerar_preco() == 300
+    random.seed()
+
+def test_gerar_aluguel():
+    random.seed(0)
+    assert gerar_aluguel() == 90
+    assert gerar_aluguel() == 90
+    assert gerar_aluguel() == 30
+    assert gerar_aluguel() == 70
+    random.seed()
