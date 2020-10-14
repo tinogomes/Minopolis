@@ -74,8 +74,5 @@ def gerar_aluguel():
 
 class Partida:
     def __init__(self, jogadores, num_propriedades=20):
-        jogadores = jogadores.copy()
-        random.shuffle(jogadores)
-
-        propriedades = [Propriedade(preco=gerar_preco()) for _ in range(num_propriedades)]
-        self.tabuleiro = Tabuleiro(jogadores=jogadores, propriedades=propriedades)
+        propriedades = [Propriedade(preco=gerar_preco(), aluguel=gerar_aluguel()) for _ in range(num_propriedades)]
+        self.tabuleiro = Tabuleiro(jogadores=random.sample(jogadores, k=len(jogadores)), propriedades=propriedades)
