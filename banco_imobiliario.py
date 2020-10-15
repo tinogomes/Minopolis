@@ -1,7 +1,5 @@
 import random
 
-from _pytest.config.argparsing import ArgumentError
-
 def dado(lados=6):
     return random.randint(1, lados)
 
