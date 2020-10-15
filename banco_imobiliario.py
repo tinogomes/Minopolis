@@ -1,5 +1,4 @@
 import random
-from typing import OrderedDict
 
 from _pytest.config.argparsing import ArgumentError
 
@@ -64,7 +63,7 @@ class Tabuleiro():
             nova_posicao -= len(self.propriedades)-1
 
         jogador.comprar_ou_aluguar(self.propriedades[nova_posicao])
-        
+
         if jogador.saldo >= 0:
             self.jogadores[jogador] = nova_posicao
         else:
