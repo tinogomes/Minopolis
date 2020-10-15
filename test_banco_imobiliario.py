@@ -189,6 +189,23 @@ def test_simula_jogadores_no_tabuleiro():
             assert propriedade.proprietario == proprietario
             assert proprietario.saldo == saldo_proprietario
 
+def test_simula_jogador_falido_libera_propriedades():
+    falido = Jogador(saldo=0)
+    propriedade_falido = Propriedade()
+    propriedade_falido.proprietario = falido
+    vencedor = Jogador()
+    propriedade_vencedor = Propriedade()
+    propriedade_vencedor.proprietario = vencedor
+
+    tabuleiro = Tabuleiro(
+        jogadores=[falido, vencedor], 
+        propriedades=[propriedade_vencedor, propriedade_falido]
+    )
+
+    tabuleiro.andar(falido, 1)
+    assert falido.saldo == -60
+    assert not propriedade_falido.proprietario
+
 def test_gerar_preco():
     random.seed(0)
     assert gerar_preco() == 400

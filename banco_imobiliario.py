@@ -64,7 +64,13 @@ class Tabuleiro():
             nova_posicao -= len(self.propriedades)-1
 
         jogador.comprar_ou_aluguar(self.propriedades[nova_posicao])
-        self.jogadores[jogador] = nova_posicao
+        
+        if jogador.saldo >= 0:
+            self.jogadores[jogador] = nova_posicao
+        else:
+            for propriedade in self.propriedades:
+                if propriedade and propriedade.proprietario == jogador:
+                    propriedade.proprietario = None
 
 def gerar_preco():
     return random.choice(range(100, 500, 50))
