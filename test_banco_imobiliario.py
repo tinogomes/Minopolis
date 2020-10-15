@@ -189,24 +189,6 @@ def test_simula_jogadores_no_tabuleiro():
             assert propriedade.proprietario == proprietario
             assert proprietario.saldo == saldo_proprietario
 
-def test_partida():
-    jogadores=[
-        Jogador(impulsivo), 
-        Jogador(cauteloso),
-        Jogador(aleatorio),
-        Jogador(exigente),
-    ]
-    random.seed(0)
-    partida = Partida(jogadores=jogadores)
-
-    assert partida.tabuleiro.jogadores == {
-        jogadores[2]: 0,
-        jogadores[1]: 0,
-        jogadores[3]: 0,
-        jogadores[0]: 0,
-    }
-    random.seed()
-
 def test_gerar_preco():
     random.seed(0)
     assert gerar_preco() == 400
@@ -221,4 +203,27 @@ def test_gerar_aluguel():
     assert gerar_aluguel() == 90
     assert gerar_aluguel() == 30
     assert gerar_aluguel() == 70
+    random.seed()
+
+def test_partida():
+    jogadores=[
+        Jogador(impulsivo), 
+        Jogador(cauteloso),
+        Jogador(aleatorio),
+        Jogador(exigente),
+    ]
+    random.seed(0)
+    partida = Partida(jogadores=jogadores, num_propriedades=2)
+
+    assert partida.rodadas == 0
+
+    assert partida.tabuleiro.jogadores == {
+        jogadores[2]: 0,
+        jogadores[1]: 0,
+        jogadores[3]: 0,
+        jogadores[0]: 0,
+    }
+
+    assert len(partida.tabuleiro.propriedades) == 3
+
     random.seed()
